@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 app.use(passport.initialize())
 
-router(app);
+app.use(router);
 
 const PORT = process.env.PORT || 8000;
 

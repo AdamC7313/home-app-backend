@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/home-app');
+
 const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
