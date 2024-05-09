@@ -14,4 +14,8 @@ const userSchema = new Schema({
     appliances: [{ type: Schema.Types.ObjectId, ref: 'Appliance' }]
 });
 
+userSchema.methods.validPassword = function (pwd) {
+    return this.password === pwd;
+}
+
 module.exports = mongoose.model('User', userSchema);
