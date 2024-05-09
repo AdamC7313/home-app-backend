@@ -18,5 +18,6 @@ const requireSignin = passport.authenticate('local', { session: false });
 
 router.post('/auth/signin', requireSignin, Authentication.signin);
 router.post('/auth/signup', Authentication.signup);
+router.post('/auth/current_user', requireAuth, Authentication.currentUser);
 
 module.exports = router;
