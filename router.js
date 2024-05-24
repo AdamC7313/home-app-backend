@@ -1,15 +1,12 @@
+//Tools
 const router = require('express').Router();
-const User = require('./models/user');
-const Task = require('./models/task');
-const Project = require('./models/project');
-const Appliance = require('./models/appliance');
 const passport = require('passport');
-const jwt = require('jwt-simple');
-const LocalStrategy = require('passport-local');
-const express = require('express');
-const Authentication = require('./controllers/authentication');
-const passportService = require('./services/passport');
 
+//Controllers
+const Authentication = require('./controllers/authentication');
+const taskList = require('./controllers/taskList');
+
+//Auth Strategies
 
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false });
@@ -19,5 +16,9 @@ const requireSignin = passport.authenticate('local', { session: false });
 router.post('/auth/signin', requireSignin, Authentication.signin);
 router.post('/auth/signup', Authentication.signup);
 router.post('/auth/current_user', requireAuth, Authentication.currentUser);
+
+//Task routes
+router.post('/addTask', taskList.addTask);
+router.get('/getTasks', taskList.getTasks);
 
 module.exports = router;

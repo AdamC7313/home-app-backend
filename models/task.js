@@ -6,8 +6,7 @@ const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
     name: String,
-    startDate: String,
-    endDate: String,
+    due: String,
     reccuring: Boolean,
     reccuringInterval: Number,
     reccuringUnit: String,
