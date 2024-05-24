@@ -1,5 +1,5 @@
 const Task = require('../models/task');
-
+const { ObjectId } = require('mongodb');
 exports.addTask = (req, res) => {
     const task = new Task({
         name: req.body.name,
@@ -33,3 +33,20 @@ exports.getTasks = (req, res) => {
             return next(err);
         });
 };
+
+exports.deleteTask = (req, res) => {
+    const { id } = req.params;
+    try {
+    Task.findById(id)
+        .then((task) => {
+            if(task) {
+                Task.deleteOne({ "_id": task._id })
+                    .then(() => res.status(200).json('task successfully deleted'))
+            } else {
+                res.status(404).json('task not found')
+            }
+        })
+    } catch (error) {
+        res.status('500').json('Server Error: ', error)
+    }
+}

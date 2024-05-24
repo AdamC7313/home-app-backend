@@ -20,5 +20,6 @@ router.post('/auth/current_user', requireAuth, Authentication.currentUser);
 //Task routes
 router.post('/addTask', taskList.addTask);
 router.get('/getTasks', taskList.getTasks);
+router.delete('/deleteTask/:id', taskList.deleteTask)
 
 module.exports = router;
