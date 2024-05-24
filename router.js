@@ -5,6 +5,7 @@ const passport = require('passport');
 //Controllers
 const Authentication = require('./controllers/authentication');
 const taskList = require('./controllers/taskList');
+const projectList = require('./controllers/projectList')
 
 //Auth Strategies
 
@@ -21,5 +22,8 @@ router.post('/auth/current_user', requireAuth, Authentication.currentUser);
 router.post('/addTask', taskList.addTask);
 router.get('/getTasks', taskList.getTasks);
 router.delete('/deleteTask/:id', taskList.deleteTask)
+
+//Project routes
+router.get('/getProjects', projectList.getProjects);
 
 module.exports = router;
