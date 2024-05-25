@@ -7,6 +7,7 @@ const Schema = mongoose.Schema;
 const taskSchema = new Schema({
     name: String,
     due: String,
+    notes: String,
     reccuring: Boolean,
     reccuringInterval: Number,
     reccuringUnit: String,
