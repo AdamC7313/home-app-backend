@@ -25,6 +25,7 @@ router.delete('/deleteTask/:id', taskList.deleteTask)
 
 //Project routes
 router.get('/getProjects', projectList.getProjects);
-router.post('/addProject', projectList.addProject)
+router.post('/addProject', projectList.addProject);
+router.get('/getSingleProject/:id', projectList.getSingleProject);
 
 module.exports = router;

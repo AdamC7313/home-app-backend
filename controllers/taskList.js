@@ -36,6 +36,7 @@ exports.getTasks = (req, res) => {
 
 exports.deleteTask = (req, res) => {
     const { id } = req.params;
+
     try {
     Task.findById(id)
         .then((task) => {
