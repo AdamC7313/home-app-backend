@@ -1,4 +1,5 @@
 const Project = require('../models/project')
+const ShoppingItem = require('../models/shoppingItem')
 
 exports.getProjects = (req, res) => {
     Project.find({})
@@ -30,6 +31,7 @@ exports.getSingleProject = (req, res) => {
     const { id } = req.params;
     try {
     Project.findById(id)
+    .populate('shoppingList')
         .then((project) => {
             if(project) {
                 res.status(200).json(project)
@@ -42,5 +44,24 @@ exports.getSingleProject = (req, res) => {
         })
     } catch (err) {
         res.status(500).json('Server error: ', err)
+    }
+}
+
+exports.getShoppingList = (req, res) => {
+    const { id } = req.params;
+    try {
+        ShoppingItem.findById(id)
+            .then(item => {
+                if (item) {
+                    res.status(200).json(item);
+                } else {
+                    res.status(404).json('Item not found');
+                }
+            })
+            .catch(err => {
+                res.status(500).json('Server error fetching item: ' + err);
+            });
+    } catch (err) {
+        res.status(500).json('Server error: ' + err);
     }
 }
