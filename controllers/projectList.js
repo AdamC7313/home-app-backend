@@ -65,3 +65,23 @@ exports.getShoppingList = (req, res) => {
         res.status(500).json('Server error: ' + err);
     }
 }
+
+exports.deleteProject = (req, res) => {
+    const { id } = req.params;
+    try {
+        Project.findById(id)
+            .then((project) => {
+                console.log(project)
+                if(project) {
+                    Project.deleteOne({ "_id": project._id })
+                        .then(() => {
+                            res.status(200).json('Project successfully deleted.')
+                        })
+                } else {
+                    res.status(404).json('Project not found.')
+                }
+            })
+    } catch (err) {
+        res.status(500).json('Error deleting task: ', err)
+    }
+}

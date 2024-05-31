@@ -28,5 +28,6 @@ router.put('/completeTask/:id', taskList.completeTask)
 router.get('/getProjects', projectList.getProjects);
 router.post('/addProject', projectList.addProject);
 router.get('/getSingleProject/:id', projectList.getSingleProject);
+router.delete('/deleteProject/:id', projectList.deleteProject);
 
 module.exports = router;
