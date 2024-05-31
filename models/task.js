@@ -8,6 +8,7 @@ const taskSchema = new Schema({
     name: String,
     due: String,
     notes: String,
+    completed: Boolean,
     reccuring: Boolean,
     reccuringInterval: Number,
     reccuringUnit: String,

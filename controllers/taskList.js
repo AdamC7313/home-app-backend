@@ -5,6 +5,7 @@ exports.addTask = (req, res) => {
         name: req.body.name,
         due: req.body.due,
         reccuring: req.body.reccuring,
+        completed: false,
         reccuringInterval: req.body.reccuringInterval || 0,
         reccuringUnit: req.body.reccuringUnit || '',
         reccuringEndDate: req.body.reccuringEndDate || '',
@@ -49,5 +50,20 @@ exports.deleteTask = (req, res) => {
         })
     } catch (error) {
         res.status('500').json('Server Error: ', error)
+    }
+}
+
+exports.completeTask = (req, res) => {
+    try {
+        const { id } = req.params;
+        Task.findByIdAndUpdate(id, { completed: true })
+            .then(() => {
+                res.status(200).json('Task completed successfully');
+            })
+            .catch(err => {
+                res.status(500).json('Error completing task: ' + err);
+            });
+    } catch (err) {
+        res.status(500).json('Error completing task: ' + err);
     }
 }

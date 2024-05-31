@@ -22,6 +22,7 @@ router.post('/auth/current_user', requireAuth, Authentication.currentUser);
 router.post('/addTask', taskList.addTask);
 router.get('/getTasks', taskList.getTasks);
 router.delete('/deleteTask/:id', taskList.deleteTask)
+router.put('/completeTask/:id', taskList.completeTask)
 
 //Project routes
 router.get('/getProjects', projectList.getProjects);
