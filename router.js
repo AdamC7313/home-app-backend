@@ -6,6 +6,7 @@ const passport = require('passport');
 const Authentication = require('./controllers/authentication');
 const taskList = require('./controllers/taskList');
 const projectList = require('./controllers/projectList')
+const applianceList = require('./controllers/applianceList')
 
 //Auth Strategies
 
@@ -29,5 +30,8 @@ router.get('/getProjects', projectList.getProjects);
 router.post('/addProject', projectList.addProject);
 router.get('/getSingleProject/:id', projectList.getSingleProject);
 router.delete('/deleteProject/:id', projectList.deleteProject);
+
+//Appliance routes
+router.post('/addAppliance', applianceList.addAppliance);
 
 module.exports = router;

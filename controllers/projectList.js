@@ -17,7 +17,6 @@ exports.addProject = (req, res) => {
         notes: r.notes,
         price: r.price
     })
-    console.log(project)
     project.save()
         .then((project) => {
             res.status(201).json({message: 'Project created successfully', id: project._id})
