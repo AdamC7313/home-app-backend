@@ -84,3 +84,25 @@ exports.deleteProject = (req, res) => {
         res.status(500).json('Error deleting task: ', err)
     }
 }
+
+exports.addShoppingItem = (req, res) => {
+    const r = req.body
+    const shoppingItem = new ShoppingItem({
+        name: r.name,
+        quantity: r.quantity,
+        price: r.price
+    })
+    
+    shoppingItem.save()
+        .then((item) => {
+            res.status(201).json('Shopping item added successfully')
+            Project.findById(r.projectId)
+                .then((project) => {
+                    project.shoppingList.push(item._id)
+                    project.save()
+                })
+        })
+        .catch((err) => {
+            res.status(500).json('Error adding shopping item: ', err)
+        })
+}

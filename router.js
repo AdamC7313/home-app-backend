@@ -31,6 +31,10 @@ router.post('/addProject', projectList.addProject);
 router.get('/getSingleProject/:id', projectList.getSingleProject);
 router.delete('/deleteProject/:id', projectList.deleteProject);
 
+//Shopping cart routes
+router.post('/addShoppingItem', projectList.addShoppingItem);
+router.get('/getShoppingList/:id', projectList.getShoppingList);
+
 //Appliance routes
 router.post('/addAppliance', applianceList.addAppliance);
 
